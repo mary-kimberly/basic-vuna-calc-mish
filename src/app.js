@@ -1,14 +1,9 @@
-// src/app.js
 const express = require('express');
 const path = require('path');
 const app = express();
 
-app.use(express.json());
-
-// 📁 Tell the server to host your HTML, CSS, and JS files from the root directory
 app.use(express.static(path.join(__dirname, '../')));
 
-// 🟢 The mandatory health endpoint used by the pipeline to verify deployment success
 app.get('/vunaCalc', (req, res) => {
   res.json({ 
     status: 'ok', 
@@ -17,4 +12,4 @@ app.get('/vunaCalc', (req, res) => {
   });
 });
 
-module.exports = app;
+module.exports = app; // Export it so other files can require it!
