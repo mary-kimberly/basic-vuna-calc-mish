@@ -66,3 +66,4 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ env.OWNER_LC }}/nodeapp-cicd:latest
             ${{ env.REGISTRY }}/${{ env.OWNER_LC }}/nodeapp-cicd:sha-${{ github.sha }}
+# Yeah yeah
