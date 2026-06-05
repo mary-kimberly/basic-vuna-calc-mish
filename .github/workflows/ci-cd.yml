@@ -98,7 +98,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./
-          server-dir: /home/michelle.vudse26.cloud/public_html/
+          server-dir: ./
           exclude: |
             **/.git*
             **/.git*/**
