@@ -55,8 +55,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ secrets.DOCKERHUB_USERNAME }}/unitconverterVuna:latest
-            ${{ env.REGISTRY }}/${{ secrets.DOCKERHUB_USERNAME }}/unitconverterVuna:sha-${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ secrets.DOCKERHUB_USERNAME }}/unitconvertervuna:latest
+            ${{ env.REGISTRY }}/${{ secrets.DOCKERHUB_USERNAME }}/unitconvertervuna:sha-${{ github.sha }}
 
   # ── JOB 3: SECURITY AUDIT ──
   security-audit:
