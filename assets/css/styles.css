@@ -203,13 +203,14 @@
     }
 
     .btn-equals {
-      background: var(--primary-color);
+      background: #6f42c1;
       color: white;
       grid-column: span 1;
+      box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2);
     }
 
     .btn-equals:hover {
-      background: #0b5ed7;
+      background: #5a32a3;
       color: white;
     }
 
