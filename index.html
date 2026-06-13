@@ -1,229 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculator</title>
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to MishVunaCalc</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #0d6efd;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .features {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .features h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .features ul {
+            list-style: none;
+            color: #555;
+        }
+
+        .features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li:before {
+            content: "✓ ";
+            color: #0d6efd;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(13, 110, 253, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(13, 110, 253, 0.6);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #999;
+        }
+    </style>
 </head>
-
 <body>
-  <button class="btn btn-outline-secondary theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">
-    🌙
-  </button>
-  
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-6 col-sm-8">
-        <div class="border border-dotted border-3 rounded-3 p-3 mb-4 bg-white bg-opacity-50">
-          <h4 class="text-center group-header mb-0">VUNA CALCULATOR</h4>
-          <p class="text-center text-small text-muted">
-            <i>Created by the set of 2025/26 in Software Engineering</i>
-          </p>
-        </div>
+    <div class="container">
+        <h1> Welcome to MishVunaCalc</h1>
+        <p class="subtitle">Calculator Solution</p>
         
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card calculator-card">
-              <div class="card-body p-4">
-                <div class="calculator">
-                  <div class="display-container">
-                    <input type="text" class="form-control" id="result" placeholder="0" disabled />
-                  </div>
+        <p>MishVunaCalc is a versatile calculator with features designed to make your calculations faster and easier.</p>
 
-                  <div class="btn-grid">
-                    <button class="btn btn-light" onclick="bracketToResult('(')">(</button>
-                    <button class="btn btn-light" onclick="bracketToResult(')')">)</button>
-                    <button class="btn btn-light" onclick="backspace()">←</button>
-                    <button class="btn btn-action" onclick="clearResult()">AC</button>
-
-                    <button class="btn btn-light" onclick="appendToResult(7)">7</button>
-                    <button class="btn btn-light" onclick="appendToResult(8)">8</button>
-                    <button class="btn btn-light" onclick="appendToResult(9)">9</button>
-                    <button class="btn btn-operator" onclick="operatorToResult('/')">÷</button>
-
-                    <button class="btn btn-light" onclick="appendToResult(4)">4</button>
-                    <button class="btn btn-light" onclick="appendToResult(5)">5</button>
-                    <button class="btn btn-light" onclick="appendToResult(6)">6</button>
-                    <button class="btn btn-operator" onclick="operatorToResult('*')">×</button>
-
-                    <button class="btn btn-light" onclick="appendToResult(1)">1</button>
-                    <button class="btn btn-light" onclick="appendToResult(2)">2</button>
-                    <button class="btn btn-light" onclick="appendToResult(3)">3</button>
-                    <button class="btn btn-operator" onclick="operatorToResult('+')">+</button>
-
-                    <button class="btn btn-light" onclick="appendToResult('.')">.</button>
-                    <button class="btn btn-light" onclick="appendToResult(0)">0</button>
-                    <button class="btn btn-operator" onclick="percentToResult('%')">%</button>
-                    <button class="btn btn-operator" onclick="operatorToResult('-')">−</button>
-
-                    <button class="btn btn-equals" onclick="calculateResult()" style="grid-column: span 4;">=</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12 mt-4">
-            <div class="card calculator-card">
-              <div class="card-header converter-header" onclick="toggleConverter()">
-                <h5 class="mb-0 converter-title">
-                  <span class="converter-toggle">▼</span> Unit & Currency Converter
-                </h5>
-              </div>
-              <div class="card-body p-4 converter-body" id="converter-body" style="display: block;">
-                
-                <div class="converter-tabs mb-4">
-                  <button class="btn btn-operator active" onclick="switchConverter('length', this)">LENGTH</button>
-                  <button class="btn btn-operator" onclick="switchConverter('weight', this)">WEIGHT</button>
-                  <button class="btn btn-operator" onclick="switchConverter('temperature', this)">TEMP</button>
-                  <button class="btn btn-operator" onclick="switchConverter('currency', this)">CURRENCY</button>
-                </div>
-
-                <div id="length-converter" class="converter-section">
-                  <div class="converter-row">
-                    <div class="converter-input-group">
-                      <label class="converter-label">From:</label>
-                      <input type="number" class="form-control" id="length-from" placeholder="0" oninput="convertLength()">
-                      <select class="form-select" id="length-from-unit" onchange="convertLength()">
-                        <option value="m">Meters (m)</option>
-                        <option value="km">Kilometers (km)</option>
-                        <option value="cm">Centimeters (cm)</option>
-                        <option value="mm">Millimeters (mm)</option>
-                        <option value="ft">Feet (ft)</option>
-                        <option value="in">Inches (in)</option>
-                        <option value="mi">Miles (mi)</option>
-                      </select>
-                    </div>
-                    <div class="converter-arrow">→</div>
-                    <div class="converter-input-group">
-                      <label class="converter-label">To:</label>
-                      <input type="number" class="form-control" id="length-to" placeholder="0" disabled>
-                      <select class="form-select" id="length-to-unit" onchange="convertLength()">
-                        <option value="m">Meters (m)</option>
-                        <option value="km">Kilometers (km)</option>
-                        <option value="cm" selected>Centimeters (cm)</option>
-                        <option value="mm">Millimeters (mm)</option>
-                        <option value="ft">Feet (ft)</option>
-                        <option value="in">Inches (in)</option>
-                        <option value="mi">Miles (mi)</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="weight-converter" class="converter-section" style="display: none;">
-                  <div class="converter-row">
-                    <div class="converter-input-group">
-                      <label class="converter-label">From:</label>
-                      <input type="number" class="form-control" id="weight-from" placeholder="0" oninput="convertWeight()">
-                      <select class="form-select" id="weight-from-unit" onchange="convertWeight()">
-                        <option value="kg">Kilograms (kg)</option>
-                        <option value="g">Grams (g)</option>
-                        <option value="mg">Milligrams (mg)</option>
-                        <option value="lb">Pounds (lb)</option>
-                        <option value="oz">Ounces (oz)</option>
-                        <option value="ton">Metric Tons (ton)</option>
-                      </select>
-                    </div>
-                    <div class="converter-arrow">→</div>
-                    <div class="converter-input-group">
-                      <label class="converter-label">To:</label>
-                      <input type="number" class="form-control" id="weight-to" placeholder="0" disabled>
-                      <select class="form-select" id="weight-to-unit" onchange="convertWeight()">
-                        <option value="kg" selected>Kilograms (kg)</option>
-                        <option value="g">Grams (g)</option>
-                        <option value="mg">Milligrams (mg)</option>
-                        <option value="lb">Pounds (lb)</option>
-                        <option value="oz">Ounces (oz)</option>
-                        <option value="ton">Metric Tons (ton)</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="temperature-converter" class="converter-section" style="display: none;">
-                  <div class="converter-row">
-                    <div class="converter-input-group">
-                      <label class="converter-label">From:</label>
-                      <input type="number" class="form-control" id="temp-from" placeholder="0" oninput="convertTemperature()">
-                      <select class="form-select" id="temp-from-unit" onchange="convertTemperature()">
-                        <option value="c">Celsius (°C)</option>
-                        <option value="f">Fahrenheit (°F)</option>
-                        <option value="k">Kelvin (K)</option>
-                      </select>
-                    </div>
-                    <div class="converter-arrow">→</div>
-                    <div class="converter-input-group">
-                      <label class="converter-label">To:</label>
-                      <input type="number" class="form-control" id="temp-to" placeholder="0" disabled>
-                      <select class="form-select" id="temp-to-unit" onchange="convertTemperature()">
-                        <option value="c">Celsius (°C)</option>
-                        <option value="f" selected>Fahrenheit (°F)</option>
-                        <option value="k">Kelvin (K)</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="currency-converter" class="converter-section" style="display: none;">
-                  <div class="converter-row">
-                    <div class="converter-input-group">
-                      <label class="converter-label">From:</label>
-                      <input type="number" class="form-control" id="currency-from" placeholder="0" oninput="convertCurrency()">
-                      <select class="form-select" id="currency-from-unit" onchange="convertCurrency()">
-                        <option value="USD">USD - US Dollar</option>
-                        <option value="EUR">EUR - Euro</option>
-                        <option value="GBP">GBP - British Pound</option>
-                        <option value="NGN" selected>NGN - Nigerian Naira</option>
-                        <option value="JPY">JPY - Japanese Yen</option>
-                        <option value="CAD">CAD - Canadian Dollar</option>
-                        <option value="AUD">AUD - Australian Dollar</option>
-                        <option value="CHF">CHF - Swiss Franc</option>
-                        <option value="CNY">CNY - Chinese Yuan</option>
-                        <option value="INR">INR - Indian Rupee</option>
-                        <option value="ZAR">ZAR - South African Rand</option>
-                        <option value="KES">KES - Kenyan Shilling</option>
-                      </select>
-                    </div>
-                    <div class="converter-arrow">→</div>
-                    <div class="converter-input-group">
-                      <label class="converter-label">To:</label>
-                      <input type="number" class="form-control" id="currency-to" placeholder="0" disabled>
-                      <select class="form-select" id="currency-to-unit" onchange="convertCurrency()">
-                        <option value="USD" selected>USD - US Dollar</option>
-                        <option value="EUR">EUR - Euro</option>
-                        <option value="GBP">GBP - British Pound</option>
-                        <option value="NGN">NGN - Nigerian Naira</option>
-                        <option value="JPY">JPY - Japanese Yen</option>
-                        <option value="CAD">CAD - Canadian Dollar</option>
-                        <option value="AUD">AUD - Australian Dollar</option>
-                        <option value="CHF">CHF - Swiss Franc</option>
-                        <option value="CNY">CNY - Chinese Yuan</option>
-                        <option value="INR">INR - Indian Rupee</option>
-                        <option value="ZAR">ZAR - South African Rand</option>
-                        <option value="KES">KES - Kenyan Shilling</option>
-                      </select>
-                    </div>
-                  </div>
-                  <small class="text-muted d-block mt-2" style="display: none;">
-                    <span id="rate-status"></span>
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <script src="assets/js/bootstrap.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-          <script src="assets/js/script.js"></script>
-          <button id="scroll-to-calculator" title="Back to Calculator">↑</button>
+        <div class="features">
+            <h3>Key Features:</h3>
+            <ul>
+                <li>Basic Arithmetic Operations</li>
+                <li>Unit & Currency Converter</li>
+                <li>Clean & Intuitive Interface</li>
+                <li>Fast & Reliable Calculations</li>
+            </ul>
         </div>
-      </div>
-    </div>
-  </div>
-</body>
 
+        <a href="index.html" class="cta-button">Go To Calculator →</a>
+
+        <footer>
+            <p>Made by Michelle Akagwu .O.</p>
+        </footer>
+    </div>
+</body>
 </html>
